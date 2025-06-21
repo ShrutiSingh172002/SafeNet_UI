@@ -1,8 +1,7 @@
-
-import React from 'react';
+// src/pages/ServiceDetail.jsx
+import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import './ServiceDetail.css';
-import { useEffect } from 'react';
 
 import windowsImg from '../assets/windows_antivirus.jpeg';
 import macImg from '../assets/mac_antivirus.jpg';
@@ -163,6 +162,11 @@ const serviceDetails = {
 const ServiceDetail = () => {
   const { id } = useParams();
   const service = serviceDetails[id];
+
+  // 👇 Add scroll to top when `id` changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (!service) return <div className="service-detail not-found">Service not found.</div>;
 
